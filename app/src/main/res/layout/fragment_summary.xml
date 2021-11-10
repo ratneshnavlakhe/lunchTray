@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.android.lunchtray.model.MainCourseViewModel" />
+
+        <variable
+            name="summaryFragment"
+            type="com.example.android.lunchtray.SummaryFragment" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/side_margin">
+
+        <TextView
+            style="@style/Widget.MaterialComponents.TextView"
+            android:textStyle="bold"
+            android:id="@+id/order_summary"
+            android:text="@string/order_summary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/mainCourse"
+            app:layout_constraintTop_toBottomOf="@id/order_summary"
+            android:layout_marginTop="@dimen/side_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textStyle="bold"
+            tools:text="Three Bean Chilli"
+            android:text="@{viewModel.mainCourseName}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/mainCoursePrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/mainCourse"
+            app:layout_constraintBottom_toBottomOf="@id/mainCourse"
+            android:text="@{viewModel.mainCoursePriceDisplay}"
+            android:layout_width="wrap_content"
+            tools:text="$5.00"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/sideDish"
+            app:layout_constraintTop_toBottomOf="@id/mainCourse"
+            android:layout_marginTop="@dimen/side_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textStyle="bold"
+            tools:text="Spicy Potatoes"
+            android:text="@{viewModel.sideDishCourseName}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/sideDishPrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/sideDish"
+            app:layout_constraintBottom_toBottomOf="@id/sideDish"
+            android:text="@{viewModel.sideDishCoursePriceDisplay}"
+            android:layout_width="wrap_content"
+            tools:text="$2.00"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:id="@+id/divider"
+            style="@style/Widget.LunchTray.Divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/side_margin"
+            android:layout_marginBottom="@dimen/side_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sideDish" />
+
+        <TextView
+            android:id="@+id/subtotal"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            android:layout_marginTop="@dimen/side_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Subtotal: $7.00"
+            android:textStyle="bold"
+            android:text="@{@string/subtotal_price(viewModel.subtotal)}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/submit_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subtotal"
+            android:layout_marginTop="@dimen/side_margin"
+            android:onClick="@{() -> summaryFragment.showToast()}"
+            android:layout_width="match_parent"
+            android:text="@string/submit"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:id="@+id/cancel_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{() -> summaryFragment.cancelOrder()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/submit_button"
+            android:layout_marginTop="@dimen/side_margin"
+            android:text="@string/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

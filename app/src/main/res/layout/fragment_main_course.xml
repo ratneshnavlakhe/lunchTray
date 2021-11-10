@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainCourseFragment">
+
+    <data>
+        <variable
+            name="mainCourseFragment"
+            type="com.example.android.lunchtray.MainCourseFragment" />
+
+        <variable
+            name="viewModel"
+            type="com.example.android.lunchtray.model.MainCourseViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/side_margin">
+
+        <RadioGroup
+            android:id="@+id/mainCourseOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RadioButton
+                android:id="@+id/cauliflower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.setMainCourse(@string/cauliflower, 7.00)}"
+                android:text="@string/cauliflower" />
+
+            <RadioButton
+                android:id="@+id/three_bean_chilli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.setMainCourse(@string/three_bean_chilli, 4.00)}"
+                android:text="@string/three_bean_chilli" />
+
+            <RadioButton
+                android:id="@+id/mushroom_pasta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.setMainCourse(@string/mushroom_pasta, 5.50)}"
+                android:text="@string/mushroom_pasta" />
+
+            <RadioButton
+                android:id="@+id/spicy_black_beans_skillet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.setMainCourse(@string/spicy_black_beans, 5.50)}"
+                android:text="@string/spicy_black_beans" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/subtotal"
+            style="@style/Widget.LunchTray.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/side_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@{@string/subtotal_price(viewModel.mainCoursePriceDisplay)}"
+            app:layout_constraintTop_toBottomOf="@id/mainCourseOptions"
+            tools:text="Subtotal $5.00" />
+
+        <Button
+            android:id="@+id/cancel_button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/side_margin"
+            android:layout_marginEnd="@dimen/side_margin"
+            android:text="@string/cancel"
+            android:onClick="@{() -> mainCourseFragment.cancelOrder()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/next"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subtotal" />
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:onClick="@{() -> mainCourseFragment.goToNextScreen(viewModel.mainCoursePrice)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cancel_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

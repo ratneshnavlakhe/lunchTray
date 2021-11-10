@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Divider style -->
+    <style name="Widget.LunchTray.Divider" parent="">
+        <item name="android:background">?attr/dividerHorizontal</item>
+    </style>
+
+    <!-- TextView style -->
+    <style name="Widget.LunchTray.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textAppearance">?attr/textAppearanceSubtitle1</item>
+    </style>
+</resources>
